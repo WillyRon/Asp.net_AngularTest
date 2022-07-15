@@ -1,0 +1,66 @@
+<figure class="text-end">
+<h2 class="p-3 ">Сотрудники</h2>
+</figure>
+<div class="p-3">
+<table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><button type="button" (click)="getSort('DepartmentDesc')"(click)="load()" class="btn btn-outline-light btn-sm ms-3 me-1 mb-1 ">▼</button> 
+          <button type="button"(click)="getSort('DepartmentAsc')"(click)="load()" class="btn btn-outline-light btn-sm  me-3 mb-1">▲</button>
+          Отдел<br>
+          <input type="text" [(ngModel)]="departmet" class="from-control ms-3" >
+          <input type="button" value="Поиск" (click)="load()" class="btn btn-light btn-sm ms-3  " />
+        </th>
+        <th scope="col"><button type="button" (click)="getSort('FullNameDesc')"(click)="load()" class="btn btn-outline-light btn-sm ms-3 me-1 mb-1">▼</button> 
+          <button type="button" (click)="getSort('FullNameAsc')"(click)="load()" class="btn btn-outline-light btn-sm me-3 mb-1">▲</button>
+          Ф.И.О <br>
+          <input type="text" [(ngModel)]="name" class="from-control ms-3" >
+          <input type="button" value="Поиск" (click)="load()" class="btn btn-light btn-sm ms-3  " />
+        </th>
+        <th scope="col"><button type="button" (click)="getSort('BirthdayDesc')"(click)="load()" class="btn btn-outline-light btn-sm ms-3 me-1 mb-1">▼</button> 
+          <button type="button" (click)="getSort('BirthdayAsc')"(click)="load()" class="btn btn-outline-light btn-sm me-3 mb-1">▲</button>
+          Дата рождения <br>
+          <input type="date" [(ngModel)]="birthday" class="from-control ms-3" >
+          <input type="button" value="Поиск" (click)="load()" class="btn btn-light btn-sm ms-3  " />
+        </th>
+        <th scope="col"><button type="button"(click)="getSort('DateStartOfWorkDesc')"(click)="load()" class="btn btn-outline-light btn-sm ms-3 me-1 mb-1">▼</button>
+          <button type="button" (click)="getSort('DateStartOfWorkAsc')"(click)="load()" class="btn btn-outline-light btn-sm me-3 mb-1">▲</button>
+          Дата устройства на работу <br>
+          <input type="date" [(ngModel)]="startwork" class="from-control ms-3" >
+          <input type="button" value="Поиск" (click)="load()" class="btn btn-light btn-sm ms-3  " />
+        </th>
+        <th scope="col"><button type="button" (click)="getSort('SalaryDesc')"(click)="load()" class="btn btn-outline-light btn-sm ms-3 me-1 mb-1">▼</button>
+          <button type="button"(click)="getSort('SalaryAsc')"(click)="load()" class="btn btn-outline-light btn-sm me-3 mb-1">▲</button>
+          Заработная плата <br>
+          <input type="number" [(ngModel)]="salary" class="from-control ms-3" >
+          <input type="button" value="Поиск" (click)="load()" class="btn btn-light btn-sm ms-3  " />
+        </th>
+        <th></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employees">
+        <th >{{emp.department}}</th>
+        <th >{{emp.fullName}}</th>
+        <th >{{emp.birthday | date:'dd.MM.yyyy'}}</th>
+        <th >{{emp.dateStartOfWork | date:'dd.MM.yyyy'}}</th>
+        <th >{{emp.salary | number }}</th>
+        <th>
+          <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal" data-bs-target="#createModal">Создать</button>
+          <button type="button" (click)="getId(emp.id)" (click)="Edi.getEmp()" class="btn btn-outline-info me-2" data-bs-toggle="modal" data-bs-target="#editeModal">Редактировать</button>
+          <button type="button"(click)="getId(emp.id)" (click)="Del.getEmpl()" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Удалить</button>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <create></create>
+</div>
+<div class="modal fade" id="editeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <edit #Edi></edit>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <delete #Del></delete>
+</div>
